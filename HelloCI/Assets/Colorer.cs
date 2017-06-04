@@ -9,5 +9,9 @@ public class Colorer : MonoBehaviour, IPointerClickHandler {
 	{		
 		Debug.Log("Clicked" + name);        
 		GetComponent<Renderer> ().material.color = Random.ColorHSV (0, 1);
+
+		#if MYAPP_CUSTOM
+		Debug.Log("MYAPP CUSTOM ONLY");
+		#endif
 	}
 }
