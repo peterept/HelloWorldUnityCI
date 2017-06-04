@@ -12,10 +12,10 @@ public class BuildScripts {
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
 		UnityEngine.Debug.Log( pathToBuiltProject );
 
+		string path = pathToBuiltProject.Substring (0, pathToBuiltProject.LastIndexOf ('/'));
 
 
-
-		DirectoryInfo folder = Directory.CreateDirectory(pathToBuiltProject + "/../TestFolder" );
+			DirectoryInfo folder = Directory.CreateDirectory(path + "/TestFolder" );
 		string s = folder.FullName + "/a.out";
 		UnityEngine.Debug.Log(s );
 		System.IO.File.WriteAllText (s, "Hello\nWorld\npathToBuiltProject: " + pathToBuiltProject);
@@ -43,7 +43,8 @@ public class BuildScripts {
 
 
 	public static void PostBuild(string path) {
-		DirectoryInfo folder = Directory.CreateDirectory(path + "/../TestFolder2" );
+		string path2 = path.Substring (0, path.LastIndexOf ('/'));		
+		DirectoryInfo folder = Directory.CreateDirectory(path2 + "/TestFolder2" );
 		string s = folder.FullName + "/b.out";
 		UnityEngine.Debug.Log(s );
 		System.IO.File.WriteAllText (s, "Hello\nWorld\npath: " + path);
